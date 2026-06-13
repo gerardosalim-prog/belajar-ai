@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BelajarAI</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+:root{
+  --bg:#0a0a0a;
+  --s1:#111;
+  --s2:#161616;
+  --s3:#1a1a1a;
+  --line:#1f1f1f;
+  --line2:#2a2a2a;
+  --p:#c4b5fd;
+  --p-dim:rgba(196,181,253,0.08);
+  --green:#86efac;
+  --red:#fca5a5;
+  --yellow:#fde68a;
+  --text:#e8e8e8;
+  --t2:#666;
+  --t3:#333;
+  --r:10px;
+  --font:'Geist',system-ui,sans-serif;
+}
+
+html{-webkit-font-smoothing:antialiased;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;font-size:14px;line-height:1.5;}
+
+/* ── HEADER ────────────────────────────── */
+header{
+  height:48px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;
+  border-bottom:1px solid var(--line);
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,10,10,0.92);
+  backdrop-filter:blur(12px);
+}
+.logo{
+  font-size:14px;font-weight:600;letter-spacing:-0.2px;
+  display:flex;align-items:center;gap:8px;
+}
+.logo-mark{
+  width:20px;height:20px;border-radius:5px;
+  background:var(--p);display:flex;align-items:center;justify-content:center;
+  font-size:10px;color:#0a0a0a;font-weight:700;
+}
+.logo-name{color:var(--text);}
+.logo-name span{color:var(--t2);}
+
+.hdr-right{display:flex;align-items:center;gap:8px;}
+.api-chip{
+  display:flex;align-items:center;gap:6px;
+  height:28px;padding:0 10px;
+  border:1px solid var(--line2);border-radius:6px;
+  font-size:11px;font-weight:500;color:var(--t2);
+  background:var(--s1);cursor:pointer;
+  transition:border-color 0.15s,color 0.15s;
+  font-family:var(--font);
+}
+.api-chip:hover{border-color:var(--line2);color:var(--text);}
+.pip{width:5px;height:5px;border-radius:50%;background:var(--t3);transition:background 0.2s;}
+.pip.live{background:var(--green);box-shadow:0 0 6px rgba(134,239,172,0.5);}
+
+/* ── NAV ───────────────────────────────── */
+.nav{
+  display:flex;padding:0 24px;
+  border-bottom:1px solid var(--line);
+  background:var(--bg);
+}
+.ntab{
+  height:40px;padding:0 14px;display:flex;align-items:center;
+  background:none;border:none;border-bottom:1px solid transparent;
+  color:var(--t2);font-family:var(--font);font-size:13px;font-weight:500;
+  cursor:pointer;transition:color 0.15s;margin-bottom:-1px;gap:6px;
+}
+.ntab:hover{color:var(--text);}
+.ntab.active{color:var(--text);border-bottom-color:var(--p);}
+.ntab svg{opacity:0.5;}
+.ntab.active svg{opacity:1;}
+
+/* ── LAYOUT ─────────────────────────────── */
+.wrap{max-width:640px;margin:0 auto;padding:40px 24px 80px;}
+.page{display:none;}
+.page.active{display:block;animation:rise 0.25s ease;}
+@keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── PAGE TITLE ─────────────────────────── */
+.ptitle{margin-bottom:32px;}
+.ptitle h1{font-size:20px;font-weight:600;letter-spacing:-0.4px;margin-bottom:6px;}
+.ptitle p{font-size:13px;color:var(--t2);line-height:1.6;}
+
+/* ── FIELD ──────────────────────────────── */
+.field{margin-bottom:20px;}
+.flabel{
+  display:block;font-size:11px;font-weight:500;
+  color:var(--t2);letter-spacing:0.3px;
+  text-transform:uppercase;margin-bottom:8px;
+}
+
+/* ── UPLOAD ─────────────────────────────── */
+.dropzone{
+  border:1px solid var(--line2);border-radius:var(--r);
+  padding:28px 20px;text-align:center;
+  cursor:pointer;transition:all 0.2s;position:relative;
+  background:var(--s1);
+}
+.dropzone:hover,.dropzone.over{border-color:var(--p);background:var(--p-dim);}
+.dropzone input{position:absolute;inset:0;opacity:0;cursor:pointer;}
+.dz-icon{
+  width:36px;height:36px;border-radius:8px;
+  border:1px solid var(--line2);background:var(--s2);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 12px;color:var(--t2);font-size:16px;
+}
+.dz-title{font-size:13px;color:var(--t2);margin-bottom:4px;}
+.dz-title strong{color:var(--p);}
+.dz-sub{font-size:11px;color:var(--t3);}
+
+.ftag{
+  display:none;align-items:center;gap:8px;
+  margin-top:8px;padding:7px 10px;
+  background:var(--s2);border:1px solid var(--line2);
+  border-radius:7px;font-size:12px;color:var(--green);
+}
+.ftag.show{display:flex;}
+.ftag-x{background:none;border:none;color:var(--t3);cursor:pointer;margin-left:auto;font-size:14px;line-height:1;transition:color 0.15s;}
+.ftag-x:hover{color:var(--red);}
+
+/* ── DIVIDER ────────────────────────────── */
+.divider{
+  display:flex;align-items:center;gap:12px;
+  margin:20px 0;font-size:11px;color:var(--t3);
+  font-weight:500;text-transform:uppercase;letter-spacing:0.3px;
+}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--line);}
+
+/* ── INPUTS ──────────────────────────────── */
+textarea,input[type=text],input[type=date],input[type=number],select{
+  width:100%;background:var(--s1);
+  border:1px solid var(--line2);border-radius:var(--r);
+  padding:9px 12px;color:var(--text);
+  font-size:13px;font-family:var(--font);outline:none;
+  transition:border-color 0.15s;
+  appearance:none;-webkit-appearance:none;
+}
+textarea{resize:vertical;line-height:1.6;}
+textarea:focus,input:focus,select:focus{border-color:rgba(196,181,253,0.4);}
+input::placeholder,textarea::placeholder{color:var(--t3);}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23444'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px;}
+select option{background:var(--s2);}
+
+/* ── BUTTON ──────────────────────────────── */
+.btn-main{
+  width:100%;height:38px;margin-top:16px;
+  background:var(--text);color:var(--bg);
+  border:none;border-radius:var(--r);
+  font-family:var(--font);font-size:13px;font-weight:600;
+  cursor:pointer;transition:all 0.15s;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  letter-spacing:-0.1px;
+}
+.btn-main:hover{background:#fff;}
+.btn-main:disabled{opacity:0.2;cursor:not-allowed;}
+
+/* ── LOADING ─────────────────────────────── */
+.loading{display:none;padding:56px 0;text-align:center;}
+.loading.show{display:block;}
+.ld-ring{
+  width:24px;height:24px;margin:0 auto 16px;
+  border:1.5px solid var(--line2);border-top-color:var(--p);
+  border-radius:50%;animation:spin 0.8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+.ld-label{font-size:13px;color:var(--t2);margin-bottom:4px;}
+.ld-sub{font-size:11px;color:var(--t3);}
+
+/* ── RESULTS ─────────────────────────────── */
+.results{display:none;}
+.results.show{display:block;animation:rise 0.2s ease;}
+
+/* SCORE BAR */
+.scorebar{
+  display:flex;align-items:center;gap:16px;
+  padding:14px 16px;
+  border:1px solid var(--line);border-radius:var(--r);
+  margin-bottom:16px;background:var(--s1);
+}
+.sb-num{font-size:22px;font-weight:700;min-width:32px;}
+.sb-info{flex:1;}
+.sb-label{font-size:11px;color:var(--t2);}
+.sb-track{height:2px;background:var(--line2);border-radius:1px;overflow:hidden;margin-top:6px;}
+.sb-fill{height:100%;border-radius:1px;transition:width 0.4s ease,background 0.4s;}
+
+/* BLOCK */
+.block{
+  border:1px solid var(--line);border-radius:var(--r);
+  overflow:hidden;margin-bottom:12px;background:var(--s1);
+}
+.block-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 14px;border-bottom:1px solid var(--line);
+}
+.block-label{font-size:11px;font-weight:500;color:var(--t2);text-transform:uppercase;letter-spacing:0.3px;}
+.block-body{padding:16px;font-size:13px;line-height:1.7;}
+.block-body ul{padding-left:16px;}
+.block-body li{margin-bottom:6px;color:var(--t2);}
+.block-body li::marker{color:var(--t3);}
+.block-body strong{color:var(--text);font-weight:500;}
+
+.btn-xs{
+  height:24px;padding:0 8px;
+  background:none;border:1px solid var(--line2);border-radius:5px;
+  font-size:11px;font-weight:500;color:var(--t2);
+  cursor:pointer;font-family:var(--font);transition:all 0.15s;
+}
+.btn-xs:hover{border-color:var(--line2);color:var(--text);}
+.btn-xs.ok{border-color:rgba(134,239,172,0.3);color:var(--green);}
+
+/* SOAL */
+.q-item{
+  padding:16px;border-radius:8px;
+  border:1px solid var(--line);margin-bottom:8px;
+  background:var(--s2);
+}
+.q-num{font-size:10px;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:0.3px;margin-bottom:6px;}
+.q-text{font-size:13px;font-weight:500;margin-bottom:12px;line-height:1.5;color:var(--text);}
+.q-opts{display:flex;flex-direction:column;gap:5px;}
+.qopt{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 10px;border-radius:7px;
+  border:1px solid var(--line);background:var(--s3);
+  cursor:pointer;font-size:12px;color:var(--t2);
+  transition:all 0.12s;
+}
+.qopt:hover{border-color:var(--line2);color:var(--text);}
+.ql{
+  width:20px;height:20px;border-radius:4px;
+  background:var(--s2);color:var(--t3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:600;flex-shrink:0;
+  transition:all 0.12s;
+}
+.qopt.correct{border-color:rgba(134,239,172,0.25);color:var(--green);}
+.qopt.correct .ql{background:rgba(134,239,172,0.1);color:var(--green);}
+.qopt.wrong{border-color:rgba(252,165,165,0.25);color:var(--red);}
+.qopt.wrong .ql{background:rgba(252,165,165,0.1);color:var(--red);}
+.q-exp{
+  display:none;margin-top:10px;padding:8px 10px;
+  background:var(--s1);border-radius:6px;
+  font-size:11px;color:var(--t2);line-height:1.5;
+  border-left:2px solid var(--line2);
+}
+.q-exp.show{display:block;}
+
+/* PLANNER */
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.fgroup{display:flex;flex-direction:column;gap:6px;}
+
+.mrow{
+  display:grid;grid-template-columns:2fr 1.1fr 1fr 28px;
+  gap:8px;align-items:center;
+  padding:8px 10px;margin-bottom:6px;
+  background:var(--s1);border:1px solid var(--line);border-radius:8px;
+}
+.mrow input,.mrow select{margin:0;padding:7px 10px;font-size:12px;}
+.del{
+  width:26px;height:26px;background:none;
+  border:1px solid var(--line);border-radius:5px;
+  color:var(--t3);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:13px;
+  transition:all 0.15s;
+}
+.del:hover{border-color:rgba(252,165,165,0.3);color:var(--red);}
+
+.btn-addrow{
+  width:100%;background:none;
+  border:1px dashed var(--line2);border-radius:8px;
+  color:var(--t3);padding:8px;font-family:var(--font);
+  font-size:12px;cursor:pointer;transition:all 0.15s;
+  margin-bottom:20px;
+}
+.btn-addrow:hover{border-color:var(--p);color:var(--p);}
+
+/* JADWAL */
+.jday{border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:8px;}
+.jday-head{
+  padding:8px 12px;background:var(--s2);
+  font-size:10px;font-weight:600;color:var(--t2);
+  text-transform:uppercase;letter-spacing:0.5px;
+}
+.jtask{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:9px 12px;border-top:1px solid var(--line);
+  font-size:12px;color:var(--t2);
+}
+.ptag{
+  font-size:10px;font-weight:600;padding:2px 7px;
+  border-radius:4px;white-space:nowrap;flex-shrink:0;margin-top:1px;
+}
+.ph{background:rgba(252,165,165,0.08);color:var(--red);}
+.pm{background:rgba(253,230,138,0.08);color:var(--yellow);}
+.pl{background:rgba(134,239,172,0.08);color:var(--green);}
+
+/* MODAL */
+.overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,0.7);backdrop-filter:blur(6px);
+  z-index:200;align-items:center;justify-content:center;padding:20px;
+}
+.overlay.show{display:flex;}
+.modal{
+  background:var(--s1);border:1px solid var(--line2);
+  border-radius:14px;padding:24px;
+  width:100%;max-width:400px;
+  animation:rise 0.2s ease;
+}
+.modal-title{font-size:15px;font-weight:600;margin-bottom:6px;}
+.modal-sub{font-size:12px;color:var(--t2);line-height:1.6;margin-bottom:18px;}
+.m-inp-wrap{position:relative;margin-bottom:6px;}
+.m-inp{
+  width:100%;background:var(--s2);
+  border:1px solid var(--line2);border-radius:8px;
+  padding:9px 36px 9px 12px;color:var(--text);
+  font-size:12px;font-family:'JetBrains Mono',monospace;
+  outline:none;transition:border-color 0.15s;
+}
+.m-inp:focus{border-color:rgba(196,181,253,0.3);}
+.m-eye{
+  position:absolute;right:10px;top:50%;transform:translateY(-50%);
+  background:none;border:none;color:var(--t3);cursor:pointer;font-size:13px;
+  transition:color 0.15s;
+}
+.m-eye:hover{color:var(--t2);}
+.m-hint{font-size:11px;color:var(--t3);margin-bottom:18px;}
+.m-hint a{color:var(--p);text-decoration:none;}
+.m-btns{display:flex;gap:8px;}
+.m-save{
+  flex:1;height:36px;
+  background:var(--text);color:var(--bg);
+  border:none;border-radius:8px;
+  font-family:var(--font);font-size:13px;font-weight:600;
+  cursor:pointer;transition:background 0.15s;
+}
+.m-save:hover{background:#fff;}
+.m-cancel{
+  height:36px;padding:0 14px;
+  background:none;border:1px solid var(--line2);border-radius:8px;
+  color:var(--t2);font-family:var(--font);font-size:13px;
+  cursor:pointer;transition:all 0.15s;
+}
+.m-cancel:hover{color:var(--text);}
+
+/* TOAST */
+.toast{
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(60px);
+  background:var(--s2);border:1px solid var(--line2);
+  border-radius:8px;padding:9px 14px;
+  font-size:12px;font-weight:500;
+  opacity:0;transition:all 0.25s;z-index:300;white-space:nowrap;
+}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
+.toast.success{border-color:rgba(134,239,172,0.25);color:var(--green);}
+.toast.error{border-color:rgba(252,165,165,0.25);color:var(--red);}
+
+/* UTIL */
+.mt8{margin-top:8px;}
+.mt16{margin-top:16px;}
+
+@media(max-width:520px){
+  .wrap{padding:24px 16px 60px;}
+  .row2{grid-template-columns:1fr;}
+  .mrow{grid-template-columns:1fr 1fr;grid-template-rows:auto auto;}
+  header{padding:0 16px;}
+  .nav{padding:0 16px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-mark">B</div>
+    <div class="logo-name">belajar<span>ai</span></div>
+  </div>
+  <div class="hdr-right">
+    <button class="api-chip" onclick="openModal()">
+      <div class="pip" id="pip"></div>
+      <span id="apiTxt">Connect</span>
+    </button>
+  </div>
+</header>
+
+<div class="nav">
+  <button class="ntab active" onclick="goTab('rangkum',this)">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="1" y="1" width="10" height="2" rx="1" fill="currentColor"/><rect x="1" y="5" width="7" height="2" rx="1" fill="currentColor"/><rect x="1" y="9" width="9" height="2" rx="1" fill="currentColor"/></svg>
+    Rangkum & Soal
+  </button>
+  <button class="ntab" onclick="goTab('planner',this)">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="1" y="1" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M4 1v2M8 1v2M1 5h10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+    Smart Planner
+  </button>
+</div>
+
+<div class="wrap">
+
+  <!-- RANGKUM PAGE -->
+  <div class="page active" id="page-rangkum">
+    <div class="ptitle">
+      <h1>Rangkum & Latihan Soal</h1>
+      <p>Upload foto catatan atau tempelkan teks materi — AI akan merangkum dan membuat soal latihan untuk kamu.</p>
+    </div>
+
+    <div class="field">
+      <span class="flabel">Foto catatan</span>
+      <div class="dropzone" id="uz">
+        <input type="file" id="fileIn" accept="image/*" onchange="onFile(event)">
+        <div class="dz-icon">↑</div>
+        <div class="dz-title">Tarik foto ke sini atau <strong>klik untuk pilih</strong></div>
+        <div class="dz-sub">JPG, PNG — foto catatan atau screenshot slide</div>
+      </div>
+      <div class="ftag" id="fileTag">
+        <span style="color:var(--t2)">✓</span>
+        <span id="fileName" style="color:var(--text)">file.jpg</span>
+        <button class="ftag-x" onclick="clearFile()">×</button>
+      </div>
+    </div>
+
+    <div class="divider">atau</div>
+
+    <div class="field">
+      <span class="flabel">Teks materi</span>
+      <textarea id="materiTeks" rows="5" placeholder="Tempelkan atau ketik materi di sini..."></textarea>
+    </div>
+
+    <div class="field mt8">
+      <span class="flabel">Mata pelajaran</span>
+      <input type="text" id="mapelTeks" placeholder="Contoh: Fisika — Hukum Newton">
+    </div>
+
+    <button class="btn-main" id="btnProses" onclick="prosesMateri()">Proses Materi</button>
+
+    <div class="loading" id="loadRangkum">
+      <div class="ld-ring"></div>
+      <div class="ld-label">Sedang memproses...</div>
+      <div class="ld-sub" id="ldSub">Membaca materi</div>
+    </div>
+
+    <div class="results" id="resRangkum">
+      <div class="scorebar">
+        <div class="sb-num" id="sbNum">0</div>
+        <div class="sb-info">
+          <div style="font-size:13px;font-weight:500;" id="sbFrac">0 / 0 soal benar</div>
+          <div class="sb-track"><div class="sb-fill" id="sbFill" style="width:0%;background:var(--t3)"></div></div>
+        </div>
+        <div style="font-size:12px;color:var(--t2)" id="sbPct">—</div>
+      </div>
+
+      <div class="block">
+        <div class="block-head">
+          <span class="block-label">Rangkuman</span>
+          <button class="btn-xs" id="cpR" onclick="doCopy('rbody','cpR')">Salin</button>
+        </div>
+        <div class="block-body" id="rbody"></div>
+      </div>
+
+      <div class="block">
+        <div class="block-head">
+          <span class="block-label">Latihan Soal</span>
+          <button class="btn-xs" onclick="resetSoal()">Ulangi</button>
+        </div>
+        <div class="block-body" id="sbody" style="padding:12px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLANNER PAGE -->
+  <div class="page" id="page-planner">
+    <div class="ptitle">
+      <h1>Smart Study Planner</h1>
+      <p>Masukkan jadwal ujianmu — AI akan menyusun jadwal belajar harian yang paling optimal.</p>
+    </div>
+
+    <div class="row2">
+      <div class="fgroup">
+        <span class="flabel">Mulai dari</span>
+        <input type="date" id="tglMulai">
+      </div>
+      <div class="fgroup">
+        <span class="flabel">Jam belajar / hari</span>
+        <input type="number" id="jamHari" value="2" min="1" max="12">
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="flabel">Jadwal ujian</span>
+      <div id="mapelList">
+        <div class="mrow">
+          <input type="text" class="mn" placeholder="Mata pelajaran">
+          <input type="date" class="md">
+          <select class="ml">
+            <option value="1">Mudah</option>
+            <option value="2">Normal</option>
+            <option value="3" selected>Susah</option>
+            <option value="4">Sangat Susah</option>
+          </select>
+          <button class="del" onclick="delRow(this)">×</button>
+        </div>
+      </div>
+      <button class="btn-addrow" onclick="addRow()">+ Tambah mata pelajaran</button>
+    </div>
+
+    <div class="field">
+      <span class="flabel">Catatan <span style="color:var(--t3);font-weight:400;text-transform:none;letter-spacing:0">(opsional)</span></span>
+      <textarea id="catatanP" rows="3" placeholder="Contoh: lemah di integral, ekskul Selasa–Kamis..."></textarea>
+    </div>
+
+    <button class="btn-main" id="btnPlanner" onclick="prosesPlanner()">Buat Jadwal Belajar</button>
+
+    <div class="loading" id="loadPlanner">
+      <div class="ld-ring"></div>
+      <div class="ld-label">Menyusun jadwal optimal...</div>
+      <div class="ld-sub">Menghitung prioritas & distribusi waktu</div>
+    </div>
+
+    <div class="results" id="resPlanner">
+      <div class="block">
+        <div class="block-head">
+          <span class="block-label">Jadwal Belajar</span>
+          <button class="btn-xs" id="cpJ" onclick="doCopy('jbody','cpJ')">Salin</button>
+        </div>
+        <div class="block-body" id="jbody"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="outClick(event)">
+  <div class="modal">
+    <div class="modal-title">Hubungkan Claude AI</div>
+    <div class="modal-sub">Masukkan API Key Claude kamu. Tersimpan hanya di browser — tidak dikirim ke server mana pun.</div>
+    <div class="m-inp-wrap">
+      <input type="password" class="m-inp" id="apiIn" placeholder="sk-ant-api03-...">
+      <button class="m-eye" onclick="togglePw()">◉</button>
+    </div>
+    <div class="m-hint">Belum punya? Daftar di <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a></div>
+    <div class="m-btns">
+      <button class="m-cancel" onclick="closeModal()">Batal</button>
+      <button class="m-save" onclick="saveKey()">Simpan</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let KEY=localStorage.getItem('bai_k')||'';
+let imgB64=null,soalArr=[],answers={};
+
+window.onload=()=>{
+  syncApi();
+  document.getElementById('tglMulai').value=new Date().toISOString().split('T')[0];
+  const uz=document.getElementById('uz');
+  uz.addEventListener('dragover',e=>{e.preventDefault();uz.classList.add('over');});
+  uz.addEventListener('dragleave',()=>uz.classList.remove('over'));
+  uz.addEventListener('drop',e=>{e.preventDefault();uz.classList.remove('over');const f=e.dataTransfer.files[0];if(f)readFile(f);});
+  const subs=['Membaca konten...','Merangkum materi...','Menyusun soal...','Hampir selesai...'];
+  let si=0;
+  setInterval(()=>{si=(si+1)%subs.length;const el=document.getElementById('ldSub');if(el)el.textContent=subs[si];},2500);
+};
+
+function openModal(){document.getElementById('overlay').classList.add('show');}
+function closeModal(){document.getElementById('overlay').classList.remove('show');}
+function outClick(e){if(e.target===document.getElementById('overlay'))closeModal();}
+function togglePw(){const i=document.getElementById('apiIn');i.type=i.type==='password'?'text':'password';}
+function saveKey(){
+  const v=document.getElementById('apiIn').value.trim();
+  if(!v.startsWith('sk-ant-')){toast('Format key salah','error');return;}
+  KEY=v;localStorage.setItem('bai_k',v);syncApi();closeModal();toast('Terhubung ✓');
+}
+function syncApi(){
+  const p=document.getElementById('pip'),t=document.getElementById('apiTxt');
+  if(KEY){p.classList.add('live');t.textContent='Connected';}
+  else{p.classList.remove('live');t.textContent='Connect';}
+}
+
+function goTab(id,el){
+  document.querySelectorAll('.ntab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+}
+
+function onFile(e){const f=e.target.files[0];if(f)readFile(f);}
+function readFile(f){
+  new FileReader().onload=ev=>{
+    imgB64=ev.target.result.split(',')[1];
+    document.getElementById('fileTag').classList.add('show');
+    document.getElementById('fileName').textContent=f.name;
+    document.getElementById('uz').style.opacity='0.35';
+  };
+  const r=new FileReader();
+  r.onload=ev=>{imgB64=ev.target.result.split(',')[1];document.getElementById('fileTag').classList.add('show');document.getElementById('fileName').textContent=f.name;document.getElementById('uz').style.opacity='0.35';};
+  r.readAsDataURL(f);
+}
+function clearFile(){
+  imgB64=null;document.getElementById('fileIn').value='';
+  document.getElementById('fileTag').classList.remove('show');
+  document.getElementById('uz').style.opacity='1';
+}
+
+async function callAI(sys,user,tok=3000){
+  if(!KEY){openModal();return null;}
+  const r=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':KEY,'anthropic-version':'2023-06-01'},
+    body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:tok,system:sys,messages:[{role:'user',content:user}]})
+  });
+  if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'API error');}
+  return (await r.json()).content[0].text;
+}
+
+async function prosesMateri(){
+  if(!KEY){openModal();return;}
+  const teks=document.getElementById('materiTeks').value.trim();
+  const mapel=document.getElementById('mapelTeks').value.trim()||'Umum';
+  if(!teks&&!imgB64){toast('Upload foto atau ketik materi dulu','error');return;}
+  const btn=document.getElementById('btnProses');btn.disabled=true;
+  document.getElementById('loadRangkum').classList.add('show');
+  document.getElementById('resRangkum').classList.remove('show');
+  try{
+    const sys=`Kamu tutor AI pelajar Indonesia. Output HANYA JSON valid, tanpa teks lain, tanpa backtick.
+Format: {"rangkuman":"HTML dengan <ul><li> dan <strong>","soal":[{"pertanyaan":"","pilihan":["A. ","B. ","C. ","D. "],"jawaban":0,"penjelasan":""}]}
+TEPAT 5 soal. Index jawaban 0-3. Bahasa Indonesia. JSON harus tertutup sempurna.`;
+    let um=imgB64?[{type:'image',source:{type:'base64',media_type:'image/jpeg',data:imgB64}},{type:'text',text:`Mapel: ${mapel}\n${teks||'Buat rangkuman + 5 soal.'}`}]:`Mapel: ${mapel}\nMateri:\n${teks}`;
+    const raw=await callAI(sys,um,3000);
+    let c=raw.replace(/```json|```/g,'').trim(),h;
+    try{h=JSON.parse(c);}catch(e){
+      if(c.lastIndexOf(']}')===-1){const lj=c.lastIndexOf(',"jawaban":');c=lj!==-1?c.substring(0,lj)+',"jawaban":0,"penjelasan":"Lihat materi"}]}':c+']}'}
+      try{h=JSON.parse(c);}catch(e2){throw new Error('Respons tidak valid. Coba materi lebih singkat.');}
+    }
+    document.getElementById('rbody').innerHTML=h.rangkuman;
+    renderSoal(h.soal);
+    document.getElementById('resRangkum').classList.add('show');
+    toast('Selesai ✓');
+  }catch(err){toast(err.message,'error');}
+  finally{document.getElementById('loadRangkum').classList.remove('show');btn.disabled=false;}
+}
+
+function renderSoal(soal){
+  soalArr=soal;answers={};updateScore();
+  const L=['A','B','C','D'];
+  document.getElementById('sbody').innerHTML=soal.map((s,i)=>`
+    <div class="q-item" id="qi${i}">
+      <div class="q-num">Soal ${i+1} dari ${soal.length}</div>
+      <div class="q-text">${s.pertanyaan}</div>
+      <div class="q-opts">${s.pilihan.map((p,j)=>`
+        <div class="qopt" id="qo${i}_${j}" onclick="jawab(${i},${j})">
+          <div class="ql">${L[j]}</div>
+          <span>${p.replace(/^[A-D]\.\s*/,'')}</span>
+        </div>`).join('')}</div>
+      <div class="q-exp" id="qe${i}">💡 ${s.penjelasan}</div>
+    </div>`).join('');
+}
+
+function jawab(qi,oi){
+  if(answers[qi]!==undefined)return;
+  answers[qi]=oi;const b=soalArr[qi].jawaban;
+  document.querySelectorAll(`#qi${qi} .qopt`).forEach((_,j)=>{
+    const el=document.getElementById(`qo${qi}_${j}`);
+    if(j===b)el.classList.add('correct');else if(j===oi&&oi!==b)el.classList.add('wrong');
+  });
+  document.getElementById(`qe${qi}`).classList.add('show');updateScore();
+}
+
+function updateScore(){
+  let ok=0;Object.entries(answers).forEach(([i,a])=>{if(soalArr[i]&&a===soalArr[i].jawaban)ok++;});
+  const tot=soalArr.length||0,pct=tot?Math.round(ok/tot*100):0;
+  document.getElementById('sbNum').textContent=ok;
+  document.getElementById('sbFrac').textContent=`${ok} / ${tot} soal benar`;
+  document.getElementById('sbPct').textContent=tot?pct+'%':'—';
+  document.getElementById('sbFill').style.width=pct+'%';
+  const c=pct>=80?'var(--green)':pct>=50?'var(--yellow)':'var(--red)';
+  document.getElementById('sbNum').style.color=ok===0?'var(--t2)':c;
+  document.getElementById('sbFill').style.background=c;
+}
+function resetSoal(){renderSoal(soalArr);}
+
+function addRow(){
+  const d=document.createElement('div');d.className='mrow';
+  d.innerHTML=`<input type="text" class="mn" placeholder="Mata pelajaran"><input type="date" class="md"><select class="ml"><option value="1">Mudah</option><option value="2">Normal</option><option value="3" selected>Susah</option><option value="4">Sangat Susah</option></select><button class="del" onclick="delRow(this)">×</button>`;
+  document.getElementById('mapelList').appendChild(d);
+}
+function delRow(btn){
+  if(document.querySelectorAll('.mrow').length>1)btn.closest('.mrow').remove();
+  else toast('Minimal 1 mata pelajaran','error');
+}
+
+async function prosesPlanner(){
+  if(!KEY){openModal();return;}
+  const jam=document.getElementById('jamHari').value,mulai=document.getElementById('tglMulai').value,catatan=document.getElementById('catatanP').value;
+  const data=[],lm={1:'Mudah',2:'Normal',3:'Susah',4:'Sangat Susah'};
+  document.querySelectorAll('.mrow').forEach(r=>{
+    const n=r.querySelector('.mn').value.trim(),dl=r.querySelector('.md').value,lv=r.querySelector('.ml').value;
+    if(n&&dl)data.push({n,dl,lv});
+  });
+  if(!data.length){toast('Isi minimal 1 mata pelajaran dengan deadline','error');return;}
+  const btn=document.getElementById('btnPlanner');btn.disabled=true;
+  document.getElementById('loadPlanner').classList.add('show');
+  document.getElementById('resPlanner').classList.remove('show');
+  try{
+    const list=data.map(d=>`- ${d.n} | Ujian: ${d.dl} | Tingkat: ${lm[d.lv]}`).join('\n');
+    const prompt=`Buat jadwal belajar harian.
+Mulai: ${mulai} | Jam/hari: ${jam} | Catatan: ${catatan||'-'}
+Mapel:\n${list}
+
+Output HTML PERSIS:
+<div class="jday"><div class="jday-head">HARI, DD MMM</div><div class="jtask"><span class="ptag ph">Mendesak</span><span>Mapel: topik — durasi</span></div></div>
+
+ph=deadline<3hr, pm=<7hr, pl=sisanya. Max 14 hari. Tips singkat di akhir. Bahasa Indonesia.`;
+    const h=await callAI('Kamu AI study planner untuk pelajar Indonesia. Jadwal harian spesifik dan realistis.',prompt,2000);
+    document.getElementById('jbody').innerHTML=h;
+    document.getElementById('resPlanner').classList.add('show');
+    toast('Jadwal siap ✓');
+  }catch(err){toast(err.message,'error');}
+  finally{document.getElementById('loadPlanner').classList.remove('show');btn.disabled=false;}
+}
+
+function doCopy(id,bid){
+  navigator.clipboard.writeText(document.getElementById(id).innerText).then(()=>{
+    const b=document.getElementById(bid);b.textContent='Tersalin';b.classList.add('ok');
+    setTimeout(()=>{b.textContent='Salin';b.classList.remove('ok');},2000);
+  });
+}
+let tt;
+function toast(msg,type='success'){
+  const t=document.getElementById('toast');clearTimeout(tt);
+  t.textContent=msg;t.className=`toast show ${type}`;
+  tt=setTimeout(()=>t.className='toast',3000);
+}
+</script>
+</body>
+</html>
