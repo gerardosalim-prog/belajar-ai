@@ -418,13 +418,16 @@ function toast(msg, err) {
 }
 
 function parseJSON(raw) {
-  // Strip markdown code fences
-  let s = raw.replace(/^```(?:json)?\s*/im, '').replace(/\s*```\s*$/im, '').trim();
-  // Find outermost JSON object
+  // Strip ALL markdown code fences (``` anywhere in string)
+  let s = raw.replace(/```(?:json)?/gi, '').trim();
+  // Find outermost JSON object (first { to last })
   const start = s.indexOf('{');
   const end = s.lastIndexOf('}');
-  if (start !== -1 && end !== -1) s = s.slice(start, end + 1);
-  return JSON.parse(s);
+  if (start !== -1 && end > start) s = s.slice(start, end + 1);
+  try { return JSON.parse(s); } catch (_) {
+    // Last-ditch: try the raw text directly
+    return JSON.parse(raw.trim());
+  }
 }
 
 function toISO() {
@@ -787,17 +790,33 @@ $('btn-add').addEventListener('click', () => {
   $('ex-name').value = ''; $('ex-date').value = ''; $('ex-diff').value = 'Sedang';
 });
 
-const SYS_PLANNER = `Kamu adalah asisten jadwal belajar untuk pelajar Indonesia. Buat jadwal belajar harian optimal.
+const SYS_PLANNER = `You are a study scheduler. Generate a daily study plan for an Indonesian student.
 
-INSTRUKSI:
-- Jadwal mulai ESOK HARI hingga ujian terakhir (maks 10 hari)
-- Prioritas: ujian paling dekat dan paling sulit mendapat porsi lebih banyak
-- Alokasi jam harian sesuai input, dibagi proporsional antar mata pelajaran
-- Topik tiap sesi harus spesifik, praktis, dan bervariasi (misal: "Latihan soal integral substitusi")
-- H-1 sebelum ujian: fokus review dan latihan soal
+OUTPUT RULES — follow exactly:
+1. Return ONLY a valid JSON object, no prose before or after it, no markdown fences.
+2. Use this exact schema:
 
-KEMBALIKAN HANYA JSON INI (tanpa teks lain):
-{"jadwal":[{"tanggal":"YYYY-MM-DD","hari":"NamaHari","total_jam":4,"sesi":[{"mapel":"Nama","topik":"Topik spesifik","durasi":"2 jam"}]}],"tips":"Satu kalimat tips belajar."}`;
+{
+  "jadwal": [
+    {
+      "tanggal": "YYYY-MM-DD",
+      "hari": "nama hari (Senin/Selasa/...)",
+      "total_jam": 4,
+      "sesi": [
+        { "mapel": "subject name", "topik": "specific study topic", "durasi": "X jam" }
+      ]
+    }
+  ],
+  "tips": "One motivational study tip in Bahasa Indonesia."
+}
+
+SCHEDULING RULES:
+- Start from TOMORROW, cover up to 10 days (stop at the last exam date).
+- Closer and harder exams get more daily hours.
+- Day before each exam: only review + practice questions for that subject.
+- Each topik must be specific (e.g. "Latihan soal integral substitusi", "Review hukum Newton 1-3").
+- All content (hari, topik, mapel, tips) must be in Bahasa Indonesia.
+- total_jam must be an integer.`;
 
 $('btn-plan').addEventListener('click', async () => {
   if (!S.exams.length) { toast('Tambahkan minimal satu ujian dulu', true); return; }
@@ -813,15 +832,17 @@ $('btn-plan').addEventListener('click', async () => {
     const list = sorted.map(e => `${e.name} — ujian ${e.date} — kesulitan ${e.diff}`).join('\n');
     const msg = `Hari ini: ${toISO()}\nJam belajar per hari: ${hours} jam\n\nUjian:\n${list}`;
 
-    const raw = await ai(SYS_PLANNER, [{ role:'user', content: msg }], 3000);
+    const raw = await ai(SYS_PLANNER, [{ role:'user', content: msg }], 4000);
+    console.log('[planner raw]', raw);
     const data = parseJSON(raw);
 
-    if (!data.jadwal || !Array.isArray(data.jadwal)) throw new Error('Format jadwal tidak valid');
+    if (!data.jadwal || !Array.isArray(data.jadwal) || data.jadwal.length === 0)
+      throw new Error('jadwal array kosong atau tidak ditemukan');
     renderPlanner(data);
     toast('Jadwal berhasil dibuat!');
   } catch (err) {
-    console.error(err);
-    toast('Gagal membuat jadwal — pastikan koneksi & coba lagi', true);
+    console.error('[planner error]', err);
+    toast('Gagal: ' + (err.message || 'coba lagi'), true);
   } finally {
     btn.disabled = false; btn.textContent = 'Buat Jadwal Belajar';
     $('skel-planner').style.display = 'none';
