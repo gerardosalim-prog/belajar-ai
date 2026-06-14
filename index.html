@@ -36,23 +36,10 @@
     }
 
     /* ── Header ──────────────────────────────────────── */
-    header {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--bg); border-bottom: 1px solid var(--line);
-    }
-    .hdr {
-      max-width: 640px; margin: 0 auto;
-      padding: 0 20px; height: 52px;
-      display: flex; align-items: center;
-    }
+    header { position: sticky; top: 0; z-index: 100; background: var(--bg); border-bottom: 1px solid var(--line); }
+    .hdr { max-width: 640px; margin: 0 auto; padding: 0 20px; height: 52px; display: flex; align-items: center; }
     .logo-wrap { display: flex; align-items: center; gap: 9px; }
-    .logo-icon {
-      width: 24px; height: 24px; border-radius: 6px;
-      background: var(--acc);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 13px; font-weight: 700; color: #fff;
-      flex-shrink: 0; letter-spacing: -.02em;
-    }
+    .logo-icon { width: 24px; height: 24px; border-radius: 6px; background: var(--acc); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0; }
     .logo-text { font-size: 14px; font-weight: 600; letter-spacing: -.02em; }
 
     /* ── Layout ──────────────────────────────────────── */
@@ -61,8 +48,7 @@
     /* ── Tabs ────────────────────────────────────────── */
     .tabs { display: flex; border-bottom: 1px solid var(--line); margin: 28px 0; }
     .tab {
-      background: none; border: none;
-      border-bottom: 1.5px solid transparent; margin-bottom: -1px;
+      background: none; border: none; border-bottom: 1.5px solid transparent; margin-bottom: -1px;
       color: var(--t2); font-family: inherit; font-size: 13px; font-weight: 500;
       padding: 10px 0; margin-right: 24px; cursor: pointer;
       transition: color var(--ease), border-color var(--ease);
@@ -73,34 +59,23 @@
     /* ── Panels ──────────────────────────────────────── */
     .panel { display: none; }
     .panel.on { display: block; animation: up .2s ease; }
-
-    @keyframes up {
-      from { opacity: 0; transform: translateY(6px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes up { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
 
     /* ── Label ───────────────────────────────────────── */
-    .lbl {
-      font-size: 10.5px; font-weight: 500; color: var(--t3);
-      letter-spacing: .07em; text-transform: uppercase; margin-bottom: 8px;
-    }
+    .lbl { font-size: 10.5px; font-weight: 500; color: var(--t3); letter-spacing: .07em; text-transform: uppercase; margin-bottom: 8px; }
 
     /* ── Textarea ────────────────────────────────────── */
     textarea {
-      width: 100%; background: var(--surf); border: 1px solid var(--line);
-      border-radius: var(--r); color: var(--text); font-family: inherit;
-      font-size: 14px; line-height: 1.65; padding: 14px; resize: vertical;
-      min-height: 156px; outline: none; transition: border-color var(--ease);
+      width: 100%; background: var(--surf); border: 1px solid var(--line); border-radius: var(--r);
+      color: var(--text); font-family: inherit; font-size: 14px; line-height: 1.65;
+      padding: 14px; resize: vertical; min-height: 156px; outline: none; transition: border-color var(--ease);
     }
     textarea::placeholder { color: var(--t3); }
-    textarea:focus { border-color: rgba(129,140,248,.35); }
+    textarea:focus { border-color: rgba(129,140,248,.4); }
     textarea:disabled { opacity: .4; cursor: not-allowed; }
 
     /* ── Divider ─────────────────────────────────────── */
-    .div {
-      display: flex; align-items: center; gap: 12px;
-      margin: 12px 0; color: var(--t3); font-size: 11px; letter-spacing: .04em;
-    }
+    .div { display: flex; align-items: center; gap: 12px; margin: 12px 0; color: var(--t3); font-size: 11px; letter-spacing: .04em; }
     .div::before, .div::after { content: ''; flex: 1; height: 1px; background: var(--line); }
 
     /* ── Dropzone ────────────────────────────────────── */
@@ -116,15 +91,12 @@
 
     /* ── Image preview ───────────────────────────────── */
     .img-wrap { position: relative; margin-top: 12px; }
-    .img-wrap img {
-      width: 100%; max-height: 220px; object-fit: cover;
-      border-radius: var(--r); border: 1px solid var(--line); display: block;
-    }
+    .img-wrap img { width: 100%; max-height: 220px; object-fit: cover; border-radius: var(--r); border: 1px solid var(--line); display: block; }
     .img-clr {
       position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,.75);
       border: 1px solid var(--line2); border-radius: 5px; color: var(--t2);
-      font-family: inherit; font-size: 11px; font-weight: 500;
-      padding: 4px 9px; cursor: pointer; transition: color var(--ease);
+      font-family: inherit; font-size: 11px; font-weight: 500; padding: 4px 9px;
+      cursor: pointer; transition: color var(--ease);
     }
     .img-clr:hover { color: var(--text); }
 
@@ -135,138 +107,121 @@
       border: 1px solid transparent; cursor: pointer; height: 38px; padding: 0 16px;
       transition: background var(--ease), color var(--ease), opacity var(--ease);
     }
-    .btn-p {
-      background: #fff; color: #111; border-color: #fff;
-      width: 100%; height: 42px; font-size: 14px; margin-top: 14px;
-    }
+    .btn-p { background: #fff; color: #111; border-color: #fff; width: 100%; height: 42px; font-size: 14px; margin-top: 14px; }
     .btn-p:hover:not(:disabled) { background: #e6e6e6; }
     .btn-p:disabled { opacity: .3; cursor: not-allowed; }
     .btn-o { background: none; color: var(--t2); border-color: var(--line2); width: 100%; margin-top: 8px; }
     .btn-o:hover { background: var(--surf); color: var(--text); }
-    .btn-ghost {
-      background: none; border: none; color: var(--t3); font-family: inherit;
-      font-size: 11.5px; padding: 3px 8px; cursor: pointer; transition: color var(--ease);
-    }
+    .btn-ghost { background: none; border: none; color: var(--t3); font-family: inherit; font-size: 11.5px; padding: 3px 8px; cursor: pointer; transition: color var(--ease); }
     .btn-ghost:hover { color: var(--err); }
 
     /* ── Spinner ─────────────────────────────────────── */
-    .spin {
-      width: 13px; height: 13px; flex-shrink: 0;
-      border: 2px solid rgba(17,17,17,.25); border-top-color: #111;
-      border-radius: 50%; animation: rot .65s linear infinite;
-    }
+    .spin { width: 13px; height: 13px; flex-shrink: 0; border: 2px solid rgba(17,17,17,.25); border-top-color: #111; border-radius: 50%; animation: rot .65s linear infinite; }
     @keyframes rot { to { transform: rotate(360deg); } }
 
     /* ── Skeleton ────────────────────────────────────── */
     .skel {
       background: linear-gradient(90deg, var(--surf) 25%, var(--surf2) 50%, var(--surf) 75%);
-      background-size: 200% 100%;
-      border-radius: var(--r);
+      background-size: 200% 100%; border-radius: var(--r);
       animation: shimmer 1.4s ease-in-out infinite;
     }
-    @keyframes shimmer {
-      0%   { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
-    .skel-wrap { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
-    .skel-row { margin-bottom: 6px; }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    .skel-wrap { margin-top: 32px; display: flex; flex-direction: column; gap: 6px; }
 
     /* ── Result section ──────────────────────────────── */
     .res { margin-top: 32px; animation: up .25s ease; }
 
     /* ── Score card ──────────────────────────────────── */
-    .score-card {
-      background: var(--surf); border: 1px solid var(--line);
-      border-radius: var(--r); padding: 18px 20px; margin-bottom: 24px;
-    }
-
-    /* Live counter (before completion) */
+    .score-card { background: var(--surf); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px; margin-bottom: 24px; }
     .score-live { display: flex; align-items: center; justify-content: space-between; }
     .score-lbl { font-size: 13px; color: var(--t2); }
     .score-n { font-size: 22px; font-weight: 600; letter-spacing: -.04em; }
     .score-d { font-size: 14px; font-weight: 400; color: var(--t3); }
-
-    /* Ring (after completion) */
     .score-ring { display: flex; align-items: center; gap: 20px; }
-    .ring-text-main { font-size: 30px; font-weight: 700; letter-spacing: -.04em; }
-    .ring-text-sub { font-size: 13px; color: var(--t2); margin-top: 2px; }
+    .ring-main { font-size: 30px; font-weight: 700; letter-spacing: -.04em; }
+    .ring-sub { font-size: 13px; color: var(--t2); margin-top: 2px; }
     .ring-msg { font-size: 12.5px; font-weight: 500; margin-top: 8px; }
 
-    /* ── Summary section ─────────────────────────────── */
-    .sum-head {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 8px;
-    }
+    /* ── Copy button ─────────────────────────────────── */
+    .sum-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
     .copy-btn {
-      display: inline-flex; align-items: center; gap: 5px;
-      background: none; border: 1px solid var(--line2); border-radius: 5px;
-      color: var(--t3); font-family: inherit; font-size: 11px; font-weight: 500;
-      padding: 4px 9px; cursor: pointer;
-      transition: color var(--ease), border-color var(--ease);
+      display: inline-flex; align-items: center; gap: 5px; background: none;
+      border: 1px solid var(--line2); border-radius: 5px; color: var(--t3);
+      font-family: inherit; font-size: 11px; font-weight: 500; padding: 4px 9px;
+      cursor: pointer; transition: color var(--ease), border-color var(--ease);
     }
     .copy-btn:hover { color: var(--acc); border-color: rgba(129,140,248,.35); }
     .copy-btn.copied { color: var(--ok); border-color: rgba(34,197,94,.3); }
 
-    .sum-list {
-      list-style: none; display: flex; flex-direction: column;
-      gap: 5px; margin-bottom: 28px;
-    }
+    /* ── Summary list ────────────────────────────────── */
+    .sum-list { list-style: none; display: flex; flex-direction: column; gap: 5px; margin-bottom: 24px; }
     .sum-list li {
-      font-size: 14px; line-height: 1.55; padding: 10px 14px 10px 30px;
-      background: var(--surf); border: 1px solid var(--line);
-      border-radius: var(--r); position: relative;
+      font-size: 14px; line-height: 1.55; padding: 11px 14px 11px 42px;
+      background: var(--surf); border: 1px solid var(--line); border-radius: var(--r); position: relative;
     }
-    .sum-list li::before {
-      content: '·'; position: absolute; left: 14px;
-      color: var(--t3); font-size: 16px; line-height: 1.4;
+    .sum-num {
+      position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+      width: 20px; height: 20px; border-radius: 5px;
+      background: rgba(129,140,248,.12); color: var(--acc);
+      font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center;
     }
+
+    /* ── Flash cards ─────────────────────────────────── */
+    .flash-section { margin-bottom: 28px; }
+    .flash-hint { font-size: 11px; color: var(--t3); margin-bottom: 8px; }
+    .flash-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .flash-card { height: 76px; perspective: 900px; cursor: pointer; }
+    .flash-inner {
+      width: 100%; height: 100%; position: relative;
+      transform-style: preserve-3d; transition: transform .45s ease;
+    }
+    .flash-card.flipped .flash-inner { transform: rotateY(180deg); }
+    .flash-front, .flash-back {
+      position: absolute; inset: 0; border-radius: var(--r);
+      border: 1px solid var(--line); display: flex; align-items: center;
+      justify-content: center; padding: 10px 14px; backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    .flash-front { background: var(--surf); font-size: 13px; font-weight: 600; color: var(--acc); text-align: center; }
+    .flash-back { background: var(--surf2); transform: rotateY(180deg); font-size: 12px; color: var(--t2); text-align: center; line-height: 1.5; }
+
+    /* ── Quiz progress ───────────────────────────────── */
+    .quiz-prog { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .quiz-prog-bar { flex: 1; height: 3px; background: var(--line2); border-radius: 2px; overflow: hidden; }
+    .quiz-prog-fill { height: 100%; background: var(--acc); border-radius: 2px; transition: width .35s ease; }
+    .quiz-prog-txt { font-size: 11px; color: var(--t3); white-space: nowrap; }
 
     /* ── MCQ ─────────────────────────────────────────── */
     .q { border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; margin-bottom: 10px; }
     .q-head { padding: 13px 16px 11px; border-bottom: 1px solid var(--line); }
-    .q-num {
-      font-size: 10px; font-weight: 600; color: var(--t3);
-      text-transform: uppercase; letter-spacing: .07em; margin-bottom: 5px;
-    }
+    .q-num { font-size: 10px; font-weight: 600; color: var(--t3); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 5px; }
     .q-txt { font-size: 14px; color: var(--text); line-height: 1.5; }
     .opts { display: flex; flex-direction: column; }
     .opt {
       display: flex; align-items: flex-start; gap: 10px; padding: 11px 16px;
       background: none; border: none; border-bottom: 1px solid var(--line);
-      cursor: pointer; text-align: left; font-family: inherit;
-      font-size: 13.5px; color: var(--t2); width: 100%; line-height: 1.5;
-      transition: background var(--ease), color var(--ease);
+      cursor: pointer; text-align: left; font-family: inherit; font-size: 13.5px; color: var(--t2);
+      width: 100%; line-height: 1.5; transition: background var(--ease), color var(--ease);
     }
     .opt:last-child { border-bottom: none; }
     .opt:hover:not(:disabled) { background: var(--surf); color: var(--text); }
     .opt:disabled { cursor: default; }
     .opt-l {
-      flex-shrink: 0; width: 20px; height: 20px; border-radius: 4px;
-      background: var(--surf); border: 1px solid var(--line2);
-      font-size: 10px; font-weight: 600; display: flex; align-items: center;
-      justify-content: center; margin-top: 2px; color: var(--t3);
+      flex-shrink: 0; width: 20px; height: 20px; border-radius: 4px; background: var(--surf);
+      border: 1px solid var(--line2); font-size: 10px; font-weight: 600;
+      display: flex; align-items: center; justify-content: center; margin-top: 2px; color: var(--t3);
       transition: background var(--ease), border-color var(--ease), color var(--ease);
     }
     .opt.ok  { color: var(--ok);  background: rgba(34,197,94,.04); }
     .opt.ok  .opt-l { background: rgba(34,197,94,.12); border-color: rgba(34,197,94,.28); color: var(--ok); }
     .opt.no  { color: var(--err); background: rgba(239,68,68,.04); }
     .opt.no  .opt-l { background: rgba(239,68,68,.12); border-color: rgba(239,68,68,.28); color: var(--err); }
-    .q-exp {
-      padding: 10px 16px; font-size: 12.5px; color: var(--t2);
-      background: var(--surf); border-top: 1px solid var(--line); line-height: 1.6;
-    }
+    .q-exp { padding: 10px 16px; font-size: 12.5px; color: var(--t2); background: var(--surf); border-top: 1px solid var(--line); line-height: 1.6; }
     .q-exp b { color: var(--text); font-weight: 500; }
 
     /* ── Graph card ──────────────────────────────────── */
-    .graph-card {
-      margin-top: 24px; background: var(--surf);
-      border: 1px solid var(--line); border-radius: var(--r);
-      overflow: hidden; animation: up .3s ease;
-    }
-    .graph-hd {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 16px; border-bottom: 1px solid var(--line);
-    }
+    .graph-card { margin-top: 24px; background: var(--surf); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; animation: up .3s ease; }
+    .graph-hd { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--line); }
     .graph-title { font-size: 13px; font-weight: 500; }
     .graph-meta { font-size: 11.5px; color: var(--t3); }
     .graph-body { padding: 14px 14px 6px; }
@@ -276,7 +231,7 @@
     .gstat-v { font-size: 18px; font-weight: 600; letter-spacing: -.03em; }
     .gstat-l { font-size: 11px; color: var(--t3); margin-top: 2px; }
 
-    /* ── Planner ─────────────────────────────────────── */
+    /* ── Planner form ────────────────────────────────── */
     .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
     .fg { display: flex; flex-direction: column; gap: 6px; }
     .fg.full { grid-column: 1 / -1; }
@@ -285,21 +240,23 @@
     input[type="text"], input[type="number"], input[type="date"], select {
       background: var(--surf); border: 1px solid var(--line); border-radius: var(--r);
       color: var(--text); font-family: inherit; font-size: 13.5px;
-      padding: 9px 12px; outline: none; height: 38px; width: 100%;
-      transition: border-color var(--ease);
+      padding: 9px 12px; outline: none; height: 38px; width: 100%; transition: border-color var(--ease);
     }
-    input:focus, select:focus { border-color: rgba(129,140,248,.35); }
+    input:focus, select:focus { border-color: rgba(129,140,248,.4); }
     select option { background: #1a1a1a; }
     input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(.45); cursor: pointer; }
 
+    /* ── Exam list ───────────────────────────────────── */
     .ex-list { display: flex; flex-direction: column; gap: 6px; margin-top: 14px; }
-    .ex-item {
-      display: flex; align-items: center; gap: 10px; padding: 10px 14px;
-      background: var(--surf); border: 1px solid var(--line); border-radius: var(--r);
-    }
+    .ex-item { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--surf); border: 1px solid var(--line); border-radius: var(--r); }
     .ex-info { flex: 1; min-width: 0; }
     .ex-name { font-size: 13.5px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .ex-date-lbl { font-size: 11.5px; color: var(--t2); margin-top: 1px; }
+    .ex-meta { display: flex; align-items: center; gap: 8px; margin-top: 2px; }
+    .ex-date-lbl { font-size: 11.5px; color: var(--t2); }
+    .ex-countdown { font-size: 10.5px; font-weight: 600; padding: 1px 6px; border-radius: 4px; }
+    .cd-red  { background: rgba(239,68,68,.1);  color: #f87171; }
+    .cd-warn { background: rgba(245,158,11,.1); color: #fbbf24; }
+    .cd-ok   { background: rgba(129,140,248,.1); color: var(--acc); }
     .badge { font-size: 10.5px; font-weight: 500; padding: 2px 8px; border-radius: 4px; flex-shrink: 0; }
     .b-mudah { background: rgba(34,197,94,.1);  color: #4ade80; }
     .b-sedang { background: rgba(234,179,8,.1);  color: #facc15; }
@@ -309,39 +266,28 @@
     .hr-row input { width: 76px; flex-shrink: 0; }
     .hr-hint { font-size: 13px; color: var(--t2); }
 
+    /* ── Schedule ────────────────────────────────────── */
     .sch-day { border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; margin-bottom: 8px; }
-    .sch-hd {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 10px 14px; background: var(--surf); border-bottom: 1px solid var(--line);
-    }
+    .sch-hd { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: var(--surf); border-bottom: 1px solid var(--line); }
     .sch-dn { font-size: 13px; font-weight: 600; }
     .sch-dt { font-size: 11.5px; color: var(--t2); margin-top: 1px; }
     .sch-tot { font-size: 11.5px; color: var(--t3); font-weight: 500; flex-shrink: 0; }
-    .sch-ses {
-      display: flex; align-items: baseline; gap: 10px;
-      padding: 9px 14px; border-bottom: 1px solid var(--line); font-size: 13px;
-    }
+    .sch-ses { display: flex; align-items: flex-start; gap: 10px; padding: 9px 14px; border-bottom: 1px solid var(--line); font-size: 13px; }
     .sch-ses:last-child { border-bottom: none; }
-    .ses-mp { font-weight: 500; flex-shrink: 0; min-width: 110px; }
+    .ses-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--acc); flex-shrink: 0; margin-top: 5px; }
+    .ses-mp { font-weight: 500; flex-shrink: 0; min-width: 100px; }
     .ses-tp { color: var(--t2); flex: 1; }
     .ses-du { color: var(--t3); font-size: 11.5px; flex-shrink: 0; }
-    .tips-card {
-      margin-top: 14px; padding: 13px 16px; background: var(--surf);
-      border: 1px solid var(--line); border-radius: var(--r);
-      font-size: 13px; color: var(--t2); line-height: 1.65;
-    }
+    .tips-card { margin-top: 14px; padding: 13px 16px; background: var(--surf); border: 1px solid var(--line); border-radius: var(--r); font-size: 13px; color: var(--t2); line-height: 1.65; }
     .tips-card b { color: var(--text); font-weight: 500; }
     .sep { height: 1px; background: var(--line); margin: 22px 0; }
 
     /* ── Toast ───────────────────────────────────────── */
     #toast {
-      position: fixed; bottom: 24px; left: 50%;
-      transform: translateX(-50%) translateY(12px);
-      background: #1e1e1e; color: var(--text);
-      border: 1px solid var(--line2); border-radius: 8px;
-      padding: 10px 18px; font-size: 13px;
-      pointer-events: none; opacity: 0;
-      transition: opacity .18s ease, transform .18s ease;
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(12px);
+      background: #1e1e1e; color: var(--text); border: 1px solid var(--line2);
+      border-radius: 8px; padding: 10px 18px; font-size: 13px;
+      pointer-events: none; opacity: 0; transition: opacity .18s ease, transform .18s ease;
       white-space: nowrap; z-index: 999;
     }
     #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -350,6 +296,7 @@
     @media (max-width: 480px) {
       .grid2 { grid-template-columns: 1fr; }
       .grid2 .fg.full { grid-column: 1; }
+      .flash-grid { grid-template-columns: 1fr; }
       .ses-mp { min-width: 80px; }
     }
   </style>
@@ -375,41 +322,37 @@
   <section class="panel on" id="p-rangkum">
     <div class="lbl">Materi / Catatan</div>
     <textarea id="inp-text" placeholder="Tempel teks catatan atau materi pelajaran kamu di sini..."></textarea>
-
     <div class="div">atau unggah foto catatan</div>
-
     <div class="dz" id="dz">
       <input type="file" id="file-in" accept="image/*">
       <div class="dz-title">Klik atau seret foto ke sini</div>
       <div class="dz-sub">JPG, PNG, WEBP — maks. 10MB</div>
     </div>
-
     <div class="img-wrap" id="img-wrap" style="display:none;">
-      <img id="img-prev" src="" alt="Preview catatan">
+      <img id="img-prev" src="" alt="Preview">
       <button class="img-clr" id="img-clr">Hapus foto</button>
     </div>
-
     <button class="btn btn-p" id="btn-proses">Proses Materi</button>
 
-    <!-- Skeleton loader -->
-    <div id="skeleton" class="skel-wrap" style="display:none;">
-      <div class="skel skel-row" style="height:90px; margin-bottom:20px;"></div>
-      <div class="skel skel-row" style="height:11px; width:110px; margin-bottom:10px;"></div>
-      <div class="skel skel-row" style="height:42px;"></div>
-      <div class="skel skel-row" style="height:42px;"></div>
-      <div class="skel skel-row" style="height:42px; margin-bottom:24px;"></div>
-      <div class="skel skel-row" style="height:11px; width:90px; margin-bottom:10px;"></div>
-      <div class="skel skel-row" style="height:150px;"></div>
-      <div class="skel skel-row" style="height:150px;"></div>
+    <div id="skel-rangkum" class="skel-wrap" style="display:none;">
+      <div class="skel" style="height:90px;"></div>
+      <div class="skel" style="height:11px; width:110px;"></div>
+      <div class="skel" style="height:42px;"></div>
+      <div class="skel" style="height:42px;"></div>
+      <div class="skel" style="height:42px;"></div>
+      <div class="skel" style="height:11px; width:90px; margin-top:4px;"></div>
+      <div class="skel" style="height:72px;"></div>
+      <div class="skel" style="height:72px;"></div>
+      <div class="skel" style="height:11px; width:80px; margin-top:4px;"></div>
+      <div class="skel" style="height:140px;"></div>
+      <div class="skel" style="height:140px;"></div>
     </div>
-
     <div class="res" id="res-rangkum" style="display:none;"></div>
   </section>
 
   <!-- ── Panel 2: Smart Planner ─────────────────────── -->
   <section class="panel" id="p-planner">
     <div class="lbl">Tambah Ujian</div>
-
     <div class="grid2">
       <div class="fg full">
         <label class="fg-lbl" for="ex-name">Mata Pelajaran</label>
@@ -428,12 +371,9 @@
         </select>
       </div>
     </div>
-
     <button class="btn btn-o" id="btn-add">+ Tambah ke Daftar</button>
     <div class="ex-list" id="ex-list"></div>
-
     <div class="sep"></div>
-
     <div class="fg">
       <span class="fg-lbl">Jam Belajar per Hari</span>
       <div class="hr-row">
@@ -441,8 +381,16 @@
         <span class="hr-hint">jam tersedia per hari</span>
       </div>
     </div>
-
     <button class="btn btn-p" id="btn-plan">Buat Jadwal Belajar</button>
+
+    <div id="skel-planner" class="skel-wrap" style="display:none;">
+      <div class="skel" style="height:11px; width:120px;"></div>
+      <div class="skel" style="height:74px;"></div>
+      <div class="skel" style="height:74px;"></div>
+      <div class="skel" style="height:74px;"></div>
+      <div class="skel" style="height:74px;"></div>
+      <div class="skel" style="height:74px;"></div>
+    </div>
     <div class="res" id="res-planner" style="display:none;"></div>
   </section>
 </div>
@@ -453,10 +401,9 @@
 // ── State ────────────────────────────────────────────────────────────────────
 const S = { imgData: null, imgType: null, exams: [], soal: [], answers: {}, correct: 0 };
 const HIST_KEY = 'bai_h';
-
-// ── Utils ────────────────────────────────────────────────────────────────────
 const $ = id => document.getElementById(id);
 
+// ── Utils ────────────────────────────────────────────────────────────────────
 function esc(s) {
   return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
@@ -471,11 +418,13 @@ function toast(msg, err) {
 }
 
 function parseJSON(raw) {
-  const m = raw.match(/```(?:json)?\s*([\s\S]*?)```/);
-  if (m) return JSON.parse(m[1].trim());
-  const j = raw.match(/\{[\s\S]*\}/);
-  if (j) return JSON.parse(j[0]);
-  return JSON.parse(raw.trim());
+  // Strip markdown code fences
+  let s = raw.replace(/^```(?:json)?\s*/im, '').replace(/\s*```\s*$/im, '').trim();
+  // Find outermost JSON object
+  const start = s.indexOf('{');
+  const end = s.lastIndexOf('}');
+  if (start !== -1 && end !== -1) s = s.slice(start, end + 1);
+  return JSON.parse(s);
 }
 
 function toISO() {
@@ -491,17 +440,19 @@ function fmtShort(iso) {
   return new Date(iso+'T00:00:00').toLocaleDateString('id-ID',{day:'numeric',month:'short'});
 }
 
+function daysUntil(iso) {
+  const now = new Date(); now.setHours(0,0,0,0);
+  const tgt = new Date(iso+'T00:00:00');
+  return Math.round((tgt - now) / 86400000);
+}
+
 // ── History ──────────────────────────────────────────────────────────────────
-function saveSession(correct, total) {
+function saveSession(c, n) {
   const h = JSON.parse(localStorage.getItem(HIST_KEY) || '[]');
-  h.push({ t: Date.now(), c: correct, n: total });
+  h.push({ t: Date.now(), c, n });
   if (h.length > 20) h.shift();
   localStorage.setItem(HIST_KEY, JSON.stringify(h));
   return h;
-}
-
-function getHistory() {
-  return JSON.parse(localStorage.getItem(HIST_KEY) || '[]');
 }
 
 // ── API ──────────────────────────────────────────────────────────────────────
@@ -513,7 +464,7 @@ async function ai(system, messages, max_tokens = 2500) {
   });
   if (!res.ok) {
     const e = await res.json().catch(() => ({}));
-    throw new Error(e.error || `Error ${res.status}`);
+    throw new Error(e.error || `Server error ${res.status}`);
   }
   const d = await res.json();
   return d.content[0].text;
@@ -528,18 +479,16 @@ document.querySelectorAll('.tab').forEach(btn => btn.addEventListener('click', (
 }));
 
 // ── Image upload ──────────────────────────────────────────────────────────────
-const dz = $('dz'), fi = $('file-in'), iw = $('img-wrap'), ip = $('img-prev'), tx = $('inp-text');
+const dz=$('dz'), fi=$('file-in'), iw=$('img-wrap'), ip=$('img-prev'), tx=$('inp-text');
 
 function loadFile(f) {
   if (!f) return;
   if (!f.type.startsWith('image/')) { toast('File harus berupa gambar', true); return; }
-  if (f.size > 10 * 1024 * 1024) { toast('Maks. 10MB', true); return; }
+  if (f.size > 10*1024*1024) { toast('Maks. 10MB', true); return; }
   const r = new FileReader();
   r.onload = e => {
-    S.imgData = e.target.result.split(',')[1];
-    S.imgType = f.type;
-    ip.src = e.target.result;
-    iw.style.display = 'block'; dz.style.display = 'none';
+    S.imgData = e.target.result.split(',')[1]; S.imgType = f.type;
+    ip.src = e.target.result; iw.style.display = 'block'; dz.style.display = 'none';
     tx.disabled = true; tx.placeholder = 'Foto catatan sudah diunggah.';
   };
   r.readAsDataURL(f);
@@ -555,66 +504,91 @@ $('img-clr').addEventListener('click', () => {
   tx.disabled = false; tx.placeholder = 'Tempel teks catatan atau materi pelajaran kamu di sini...';
 });
 
-// ── Rangkum ───────────────────────────────────────────────────────────────────
-const SYS_RANGKUM = `Kamu adalah asisten belajar cerdas untuk pelajar Indonesia (SMP/SMA/Kuliah). Dari materi yang diberikan:
-1. Buat ringkasan 5–8 poin utama yang padat dan mudah dipahami
-2. Buat tepat 5 soal pilihan ganda (A, B, C, D) yang menguji pemahaman mendalam
+// ── RANGKUM ──────────────────────────────────────────────────────────────────
+const SYS_RANGKUM = `Kamu adalah asisten belajar cerdas untuk pelajar Indonesia. Dari materi yang diberikan, hasilkan output JSON TEPAT seperti berikut ini tanpa teks tambahan apapun:
 
-Kembalikan HANYA JSON valid berikut, tanpa teks atau markdown lain:
 {
-  "ringkasan": ["poin 1", "poin 2", "..."],
+  "ringkasan": ["Poin utama 1 yang padat.", "Poin utama 2.", "..."],
+  "kata_kunci": [
+    {"kata": "Nama konsep/istilah", "definisi": "Penjelasan singkat 1 kalimat."},
+    {"kata": "Istilah 2", "definisi": "Penjelasan singkat."}
+  ],
   "soal": [
     {
-      "pertanyaan": "Teks pertanyaan?",
-      "pilihan": ["A. ...", "B. ...", "C. ...", "D. ..."],
+      "pertanyaan": "Pertanyaan lengkap?",
+      "pilihan": ["A. Pilihan A", "B. Pilihan B", "C. Pilihan C", "D. Pilihan D"],
       "jawaban": "A",
       "penjelasan": "Penjelasan singkat mengapa jawaban ini benar."
     }
   ]
 }
-Gunakan Bahasa Indonesia yang baik dan tepat.`;
+
+Aturan:
+- ringkasan: 5-8 poin, padat dan informatif
+- kata_kunci: 4-6 istilah atau konsep penting dari materi
+- soal: TEPAT 5 soal pilihan ganda yang menguji pemahaman mendalam
+- Semua dalam Bahasa Indonesia yang baik
+- HANYA kembalikan JSON, tidak ada teks lain`;
 
 $('btn-proses').addEventListener('click', async () => {
   const text = tx.value.trim();
   if (!text && !S.imgData) { toast('Masukkan teks atau unggah foto catatan dulu', true); return; }
 
   const btn = $('btn-proses');
-  btn.disabled = true;
-  btn.innerHTML = '<div class="spin"></div> Memproses...';
-  $('skeleton').style.display = 'flex';
+  btn.disabled = true; btn.innerHTML = '<div class="spin"></div> Memproses...';
+  $('skel-rangkum').style.display = 'flex';
   $('res-rangkum').style.display = 'none';
 
   try {
     const msgs = S.imgData
       ? [{ role:'user', content:[
           { type:'image', source:{ type:'base64', media_type:S.imgType, data:S.imgData } },
-          { type:'text', text:'Ini foto catatan pelajaran saya. Tolong rangkum dan buat soal latihan.' }
+          { type:'text', text:'Ini foto catatan pelajaran saya. Hasilkan ringkasan, kata kunci, dan soal latihan dalam format JSON yang diminta.' }
         ]}]
-      : [{ role:'user', content:`Materi pelajaran:\n\n${text}` }];
+      : [{ role:'user', content:`Materi pelajaran berikut ini, hasilkan JSON sesuai format:\n\n${text}` }];
 
-    const raw = await ai(SYS_RANGKUM, msgs, 2500);
+    const raw = await ai(SYS_RANGKUM, msgs, 3000);
     const data = parseJSON(raw);
-
-    S.soal = data.soal || [];
-    S.answers = {};
-    S.correct = 0;
-
+    S.soal = data.soal || []; S.answers = {}; S.correct = 0;
     renderRangkum(data);
     toast('Berhasil diproses!');
   } catch (err) {
     console.error(err);
     toast('Gagal memproses. Coba lagi.', true);
   } finally {
-    btn.disabled = false;
-    btn.textContent = 'Proses Materi';
-    $('skeleton').style.display = 'none';
+    btn.disabled = false; btn.textContent = 'Proses Materi';
+    $('skel-rangkum').style.display = 'none';
   }
 });
 
 function renderRangkum(data) {
   const total = S.soal.length;
-  const poin = (data.ringkasan || []).map(p => `<li>${esc(p)}</li>`).join('');
 
+  // Summary numbered list
+  const poin = (data.ringkasan || []).map((p, i) =>
+    `<li><span class="sum-num">${i+1}</span>${esc(p)}</li>`
+  ).join('');
+
+  // Flash cards
+  const kk = data.kata_kunci || [];
+  const flashHtml = kk.length ? `
+    <div class="flash-section">
+      <div class="sum-head">
+        <div class="lbl" style="margin-bottom:0;">Kata Kunci</div>
+        <span class="flash-hint">Klik kartu untuk lihat definisi</span>
+      </div>
+      <div class="flash-grid" style="margin-top:8px;">
+        ${kk.map(k => `
+          <div class="flash-card" onclick="this.classList.toggle('flipped')">
+            <div class="flash-inner">
+              <div class="flash-front">${esc(k.kata)}</div>
+              <div class="flash-back">${esc(k.definisi)}</div>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>` : '';
+
+  // MCQ
   const soalHtml = S.soal.map((q, i) => {
     const opts = (q.pilihan || []).map((opt, j) => {
       const l = 'ABCD'[j];
@@ -625,7 +599,7 @@ function renderRangkum(data) {
     }).join('');
     return `<div class="q" id="q${i}">
       <div class="q-head">
-        <div class="q-num">Soal ${i+1}</div>
+        <div class="q-num">Soal ${i+1} dari ${total}</div>
         <div class="q-txt">${esc(q.pertanyaan)}</div>
       </div>
       <div class="opts">${opts}</div>
@@ -651,60 +625,61 @@ function renderRangkum(data) {
           <rect x="4.5" y="4.5" width="6.5" height="6.5" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
           <path d="M3 1H1.5A.5.5 0 0 0 1 1.5V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
         </svg>
-        Salin ringkasan
+        Salin
       </button>
     </div>
     <ul class="sum-list" id="sum-list">${poin}</ul>
 
-    <div class="lbl">Soal Latihan</div>
+    ${flashHtml}
+
+    <div class="sum-head" style="margin-bottom:6px;">
+      <div class="lbl" style="margin-bottom:0;">Soal Latihan</div>
+      <span class="quiz-prog-txt" id="qpt">0 / ${total} dijawab</span>
+    </div>
+    <div class="quiz-prog-bar" style="margin-bottom:14px;">
+      <div class="quiz-prog-fill" id="qpf" style="width:0%;"></div>
+    </div>
     ${soalHtml}
     <div id="graph-slot"></div>`;
 
   el.style.display = 'block';
   el.scrollIntoView({ behavior:'smooth', block:'start' });
 
-  // Copy button
   $('copy-btn').addEventListener('click', function() {
-    const items = Array.from(document.querySelectorAll('#sum-list li')).map(li => '• ' + li.textContent);
-    navigator.clipboard.writeText(items.join('\n')).then(() => {
-      this.innerHTML = '<svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Tersalin!';
-      this.classList.add('copied');
-      setTimeout(() => {
-        this.innerHTML = '<svg width="11" height="11" viewBox="0 0 12 12" fill="none"><rect x="4.5" y="4.5" width="6.5" height="6.5" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M3 1H1.5A.5.5 0 0 0 1 1.5V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg> Salin ringkasan';
-        this.classList.remove('copied');
-      }, 2000);
+    const txt = Array.from(document.querySelectorAll('#sum-list li'))
+      .map((li, i) => `${i+1}. ${li.textContent.trim()}`).join('\n');
+    navigator.clipboard.writeText(txt).then(() => {
+      this.innerHTML = '✓ Tersalin'; this.classList.add('copied');
+      setTimeout(() => { this.innerHTML = '<svg width="11" height="11" viewBox="0 0 12 12" fill="none"><rect x="4.5" y="4.5" width="6.5" height="6.5" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M3 1H1.5A.5.5 0 0 0 1 1.5V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg> Salin'; this.classList.remove('copied'); }, 2000);
     }).catch(() => toast('Gagal menyalin', true));
   });
 }
 
-// ── MCQ answer handler ────────────────────────────────────────────────────────
+// ── MCQ handler ───────────────────────────────────────────────────────────────
 $('res-rangkum').addEventListener('click', e => {
   const btn = e.target.closest('.opt');
   if (!btn || btn.disabled) return;
   const qi = +btn.dataset.qi;
   if (S.answers[qi] != null) return;
-  const l = btn.dataset.l;
-  const q = S.soal[qi];
+  const l = btn.dataset.l, q = S.soal[qi];
   S.answers[qi] = l;
-  const correct = l === q.jawaban;
-  if (correct) { S.correct++; btn.classList.add('ok'); }
-  else {
-    btn.classList.add('no');
-    document.querySelector(`#q${qi} .opt[data-l="${q.jawaban}"]`)?.classList.add('ok');
-  }
+  const ok = l === q.jawaban;
+  if (ok) { S.correct++; btn.classList.add('ok'); }
+  else { btn.classList.add('no'); document.querySelector(`#q${qi} .opt[data-l="${q.jawaban}"]`)?.classList.add('ok'); }
   document.querySelectorAll(`#q${qi} .opt`).forEach(b => b.disabled = true);
   $(`qe${qi}`).style.display = 'block';
 
   const answered = Object.keys(S.answers).length;
   if ($('sc-n')) $('sc-n').textContent = S.correct;
+  const qpf = $('qpf'), qpt = $('qpt');
+  if (qpf) qpf.style.width = (answered / S.soal.length * 100) + '%';
+  if (qpt) qpt.textContent = `${answered} / ${S.soal.length} dijawab`;
 
   if (answered === S.soal.length) {
-    // Save to history
     const history = saveSession(S.correct, S.soal.length);
-    // Show ring
     showRing(S.correct, S.soal.length);
-    // Show graph
     $('graph-slot').innerHTML = buildGraph(history);
+    $('graph-slot').scrollIntoView({ behavior:'smooth', block:'nearest' });
     toast(`Selesai! ${S.correct}/${S.soal.length} benar`);
   }
 });
@@ -712,125 +687,90 @@ $('res-rangkum').addEventListener('click', e => {
 // ── Score ring ────────────────────────────────────────────────────────────────
 function showRing(correct, total) {
   const pct = total > 0 ? correct / total : 0;
-  const R = 34, C = +(2 * Math.PI * R).toFixed(2);
-  const offset = +(C * (1 - pct)).toFixed(2);
+  const R = 34, C = +(2 * Math.PI * R).toFixed(2), offset = +(C * (1 - pct)).toFixed(2);
   const color = pct >= 0.8 ? 'var(--ok)' : pct >= 0.5 ? 'var(--warn)' : 'var(--err)';
-  const msg = pct >= 0.8 ? 'Luar biasa! Pertahankan!' : pct >= 0.6 ? 'Bagus! Terus semangat belajar.' : pct >= 0.4 ? 'Cukup baik, terus berlatih.' : 'Yuk belajar lebih giat lagi!';
-
+  const msg = pct >= 0.8 ? 'Luar biasa! Pertahankan!' : pct >= 0.6 ? 'Bagus! Terus semangat.' : pct >= 0.4 ? 'Cukup baik, terus berlatih.' : 'Yuk belajar lebih giat!';
   $('score-card').innerHTML = `
     <div class="score-ring">
       <svg width="84" height="84" viewBox="0 0 84 84" style="flex-shrink:0;">
         <circle cx="42" cy="42" r="${R}" fill="none" stroke="var(--line2)" stroke-width="6"/>
         <circle cx="42" cy="42" r="${R}" fill="none" stroke="${color}" stroke-width="6"
-          stroke-dasharray="${C}" stroke-dashoffset="${C}"
-          stroke-linecap="round" transform="rotate(-90 42 42)"
-          id="ring-arc"/>
+          stroke-dasharray="${C}" stroke-dashoffset="${C}" stroke-linecap="round"
+          transform="rotate(-90 42 42)" id="ring-arc"/>
       </svg>
       <div>
-        <div class="ring-text-main" style="color:${color};">${Math.round(pct*100)}<span style="font-size:16px;font-weight:400;color:var(--t3);">%</span></div>
-        <div class="ring-text-sub">${correct} dari ${total} soal benar</div>
+        <div class="ring-main" style="color:${color};">${Math.round(pct*100)}<span style="font-size:16px;font-weight:400;color:var(--t3);">%</span></div>
+        <div class="ring-sub">${correct} dari ${total} soal benar</div>
         <div class="ring-msg" style="color:${color};">${msg}</div>
       </div>
     </div>`;
-
-  // Animate ring
   requestAnimationFrame(() => requestAnimationFrame(() => {
     const arc = $('ring-arc');
-    if (arc) {
-      arc.style.transition = 'stroke-dashoffset 1s cubic-bezier(.4,0,.2,1)';
-      arc.style.strokeDashoffset = offset;
-    }
+    if (arc) { arc.style.transition = 'stroke-dashoffset 1s cubic-bezier(.4,0,.2,1)'; arc.style.strokeDashoffset = offset; }
   }));
 }
 
-// ── Graph builder ─────────────────────────────────────────────────────────────
+// ── Graph ─────────────────────────────────────────────────────────────────────
 function buildGraph(history) {
   if (!history.length) return '';
   const last = history.slice(-8);
-  const W = 560, H = 170;
-  const pL = 34, pR = 12, pT = 20, pB = 32;
-  const cW = W - pL - pR, cH = H - pT - pB;
-  const n = last.length;
-  const bW = Math.min(48, Math.floor(cW / n * 0.55));
-  const slot = cW / n;
-
-  // Grid
-  const grid = [0, 50, 100].map(v => {
-    const y = pT + cH - cH * v / 100;
+  const W=560, H=170, pL=34, pR=12, pT=20, pB=32;
+  const cW=W-pL-pR, cH=H-pT-pB, n=last.length;
+  const bW=Math.min(48, Math.floor(cW/n*0.55)), slot=cW/n;
+  const grid=[0,50,100].map(v=>{
+    const y=pT+cH-cH*v/100;
     return `<line x1="${pL}" y1="${y}" x2="${W-pR}" y2="${y}" stroke="#202020" stroke-width="1"/>
     <text x="${pL-6}" y="${y+4}" text-anchor="end" fill="#383838" font-size="9" font-family="Inter,sans-serif">${v}</text>`;
   }).join('');
-
-  // Bars + points for trend line
-  const pts = [];
-  const bars = last.map((s, i) => {
-    const pct = s.c / s.n;
-    const bH = Math.max(4, cH * pct);
-    const x = pL + slot * i + (slot - bW) / 2;
-    const y = pT + cH - bH;
-    const cx = +(x + bW / 2).toFixed(1);
-    const cy = +(pT + cH - cH * pct).toFixed(1);
-    pts.push([cx, cy]);
-    const col = pct >= 0.8 ? '#22c55e' : pct >= 0.5 ? '#f59e0b' : '#ef4444';
-    const dt = new Date(s.t).toLocaleDateString('id-ID',{day:'numeric',month:'short'});
+  const pts=[];
+  const bars=last.map((s,i)=>{
+    const pct=s.c/s.n, bH=Math.max(4,cH*pct);
+    const x=pL+slot*i+(slot-bW)/2, y=pT+cH-bH;
+    const cx=+(x+bW/2).toFixed(1), cy=+(pT+cH-cH*pct).toFixed(1);
+    pts.push([cx,cy]);
+    const col=pct>=0.8?'#22c55e':pct>=0.5?'#f59e0b':'#ef4444';
+    const dt=new Date(s.t).toLocaleDateString('id-ID',{day:'numeric',month:'short'});
     return `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bW}" height="${bH.toFixed(1)}" rx="4" fill="${col}" opacity="0.7"/>
     <text x="${cx}" y="${H-pB+14}" text-anchor="middle" fill="#3a3a3a" font-size="9" font-family="Inter,sans-serif">${dt}</text>
     <text x="${cx}" y="${(y-5).toFixed(1)}" text-anchor="middle" fill="${col}" font-size="9" font-weight="600" font-family="Inter,sans-serif">${Math.round(pct*100)}%</text>`;
   }).join('');
-
-  // Trend line + dots
-  const line = pts.length > 1
-    ? `<polyline points="${pts.map(p=>p.join(',')).join(' ')}" fill="none" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.8"/>`
-    : '';
-  const dots = pts.map(([cx,cy]) =>
-    `<circle cx="${cx}" cy="${cy}" r="3" fill="#818cf8"/>`
-  ).join('');
-
-  const avg = Math.round(last.reduce((s,h) => s + h.c/h.n, 0) / last.length * 100);
-  const best = Math.round(Math.max(...last.map(h => h.c/h.n)) * 100);
-  const bestColor = best >= 80 ? 'var(--ok)' : best >= 50 ? 'var(--warn)' : 'var(--err)';
-  const avgColor  = avg  >= 80 ? 'var(--ok)' : avg  >= 50 ? 'var(--warn)' : 'var(--err)';
-
+  const line=pts.length>1?`<polyline points="${pts.map(p=>p.join(',')).join(' ')}" fill="none" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.8"/>`:' ';
+  const dots=pts.map(([cx,cy])=>`<circle cx="${cx}" cy="${cy}" r="3" fill="#818cf8"/>`).join('');
+  const avg=Math.round(last.reduce((s,h)=>s+h.c/h.n,0)/last.length*100);
+  const best=Math.round(Math.max(...last.map(h=>h.c/h.n))*100);
+  const c1=avg>=80?'var(--ok)':avg>=50?'var(--warn)':'var(--err)';
+  const c2=best>=80?'var(--ok)':best>=50?'var(--warn)':'var(--err)';
   return `<div class="graph-card">
-    <div class="graph-hd">
-      <span class="graph-title">Statistik Latihan</span>
-      <span class="graph-meta">${last.length} sesi terakhir</span>
-    </div>
-    <div class="graph-body">
-      <svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" width="100%">
-        ${grid}${bars}${line}${dots}
-      </svg>
-    </div>
+    <div class="graph-hd"><span class="graph-title">Statistik Latihan</span><span class="graph-meta">${last.length} sesi terakhir</span></div>
+    <div class="graph-body"><svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" width="100%">${grid}${bars}${line}${dots}</svg></div>
     <div class="graph-stats">
-      <div class="gstat">
-        <div class="gstat-v" style="color:${avgColor};">${avg}%</div>
-        <div class="gstat-l">Rata-rata</div>
-      </div>
-      <div class="gstat">
-        <div class="gstat-v" style="color:${bestColor};">${best}%</div>
-        <div class="gstat-l">Terbaik</div>
-      </div>
-      <div class="gstat">
-        <div class="gstat-v">${last.length}</div>
-        <div class="gstat-l">Total Sesi</div>
-      </div>
+      <div class="gstat"><div class="gstat-v" style="color:${c1};">${avg}%</div><div class="gstat-l">Rata-rata</div></div>
+      <div class="gstat"><div class="gstat-v" style="color:${c2};">${best}%</div><div class="gstat-l">Terbaik</div></div>
+      <div class="gstat"><div class="gstat-v">${last.length}</div><div class="gstat-l">Total Sesi</div></div>
     </div>
   </div>`;
 }
 
-// ── Smart Planner ─────────────────────────────────────────────────────────────
+// ── SMART PLANNER ─────────────────────────────────────────────────────────────
 $('ex-date').min = toISO();
 
 function renderExams() {
-  $('ex-list').innerHTML = S.exams.map((ex, i) => `
-    <div class="ex-item">
+  $('ex-list').innerHTML = S.exams.length === 0 ? '' : S.exams.map((ex, i) => {
+    const days = daysUntil(ex.date);
+    const cdClass = days <= 3 ? 'cd-red' : days <= 7 ? 'cd-warn' : 'cd-ok';
+    const cdText = days === 0 ? 'Hari ini!' : days === 1 ? 'Besok!' : `${days} hari lagi`;
+    return `<div class="ex-item">
       <div class="ex-info">
         <div class="ex-name">${esc(ex.name)}</div>
-        <div class="ex-date-lbl">${fmtLong(ex.date)}</div>
+        <div class="ex-meta">
+          <span class="ex-date-lbl">${fmtShort(ex.date)}</span>
+          <span class="ex-countdown ${cdClass}">${cdText}</span>
+        </div>
       </div>
       <span class="badge b-${ex.diff.toLowerCase()}">${esc(ex.diff)}</span>
       <button class="btn-ghost" onclick="delExam(${i})">Hapus</button>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 
 window.delExam = i => { S.exams.splice(i, 1); renderExams(); };
@@ -841,60 +781,50 @@ $('btn-add').addEventListener('click', () => {
   const diff = $('ex-diff').value;
   if (!name) { toast('Masukkan nama mata pelajaran', true); return; }
   if (!date) { toast('Pilih tanggal ujian', true); return; }
-  if (date <= toISO()) { toast('Tanggal ujian harus di masa mendatang', true); return; }
+  if (date < toISO()) { toast('Tanggal ujian tidak boleh di masa lalu', true); return; }
   S.exams.push({ name, date, diff });
   renderExams();
   $('ex-name').value = ''; $('ex-date').value = ''; $('ex-diff').value = 'Sedang';
 });
 
-const SYS_PLANNER = `Kamu adalah asisten perencanaan belajar cerdas untuk pelajar Indonesia. Buat jadwal belajar harian yang optimal.
+const SYS_PLANNER = `Kamu adalah asisten jadwal belajar untuk pelajar Indonesia. Buat jadwal belajar harian optimal.
 
-Aturan:
-- Jadwal mulai esok hari hingga ujian terakhir (maksimal 14 hari)
-- Prioritaskan berdasarkan kedekatan ujian lalu tingkat kesulitan
-- Alokasikan jam sesuai yang tersedia per hari
-- Tiap sesi: satu mata pelajaran, topik spesifik dan bervariasi
-- Sehari sebelum ujian: jadwalkan sesi review / latihan soal
+INSTRUKSI:
+- Jadwal mulai ESOK HARI hingga ujian terakhir (maks 10 hari)
+- Prioritas: ujian paling dekat dan paling sulit mendapat porsi lebih banyak
+- Alokasi jam harian sesuai input, dibagi proporsional antar mata pelajaran
+- Topik tiap sesi harus spesifik, praktis, dan bervariasi (misal: "Latihan soal integral substitusi")
+- H-1 sebelum ujian: fokus review dan latihan soal
 
-Kembalikan HANYA JSON valid berikut, tanpa teks atau markdown lain:
-{
-  "jadwal": [
-    {
-      "tanggal": "YYYY-MM-DD",
-      "hari": "Senin",
-      "total_jam": 4,
-      "sesi": [
-        { "mapel": "Matematika", "topik": "Latihan soal persamaan linear", "durasi": "2 jam" }
-      ]
-    }
-  ],
-  "tips": "Tips singkat strategi belajar menghadapi ujian-ujian ini."
-}`;
+KEMBALIKAN HANYA JSON INI (tanpa teks lain):
+{"jadwal":[{"tanggal":"YYYY-MM-DD","hari":"NamaHari","total_jam":4,"sesi":[{"mapel":"Nama","topik":"Topik spesifik","durasi":"2 jam"}]}],"tips":"Satu kalimat tips belajar."}`;
 
 $('btn-plan').addEventListener('click', async () => {
   if (!S.exams.length) { toast('Tambahkan minimal satu ujian dulu', true); return; }
-  const hours = parseInt($('hours').value) || 4;
-  if (hours < 1 || hours > 14) { toast('Jam belajar harus 1–14', true); return; }
+  const hours = Math.max(1, Math.min(14, parseInt($('hours').value) || 4));
 
   const btn = $('btn-plan');
-  btn.disabled = true;
-  btn.innerHTML = '<div class="spin"></div> Membuat jadwal...';
+  btn.disabled = true; btn.innerHTML = '<div class="spin"></div> Membuat jadwal...';
+  $('skel-planner').style.display = 'flex';
+  $('res-planner').style.display = 'none';
 
   try {
-    const list = [...S.exams].sort((a,b) => a.date.localeCompare(b.date))
-      .map(e => `- ${e.name}: ujian ${e.date} (Kesulitan: ${e.diff})`).join('\n');
+    const sorted = [...S.exams].sort((a,b) => a.date.localeCompare(b.date));
+    const list = sorted.map(e => `${e.name} — ujian ${e.date} — kesulitan ${e.diff}`).join('\n');
+    const msg = `Hari ini: ${toISO()}\nJam belajar per hari: ${hours} jam\n\nUjian:\n${list}`;
 
-    const msg = `Hari ini: ${toISO()}\nJam belajar tersedia per hari: ${hours} jam\n\nDaftar ujian:\n${list}\n\nBuatkan jadwal belajar optimal untuk saya.`;
-    const raw = await ai(SYS_PLANNER, [{ role:'user', content:msg }], 3000);
+    const raw = await ai(SYS_PLANNER, [{ role:'user', content: msg }], 3000);
     const data = parseJSON(raw);
+
+    if (!data.jadwal || !Array.isArray(data.jadwal)) throw new Error('Format jadwal tidak valid');
     renderPlanner(data);
-    toast('Jadwal belajar berhasil dibuat!');
+    toast('Jadwal berhasil dibuat!');
   } catch (err) {
     console.error(err);
-    toast('Gagal membuat jadwal. Coba lagi.', true);
+    toast('Gagal membuat jadwal — pastikan koneksi & coba lagi', true);
   } finally {
-    btn.disabled = false;
-    btn.textContent = 'Buat Jadwal Belajar';
+    btn.disabled = false; btn.textContent = 'Buat Jadwal Belajar';
+    $('skel-planner').style.display = 'none';
   }
 });
 
@@ -902,19 +832,16 @@ function renderPlanner(data) {
   const days = (data.jadwal || []).map(d => {
     const sesi = (d.sesi || []).map(s =>
       `<div class="sch-ses">
+        <span class="ses-dot"></span>
         <span class="ses-mp">${esc(s.mapel)}</span>
         <span class="ses-tp">${esc(s.topik)}</span>
         <span class="ses-du">${esc(s.durasi)}</span>
       </div>`).join('');
     return `<div class="sch-day">
       <div class="sch-hd">
-        <div>
-          <div class="sch-dn">${esc(d.hari)}</div>
-          <div class="sch-dt">${fmtShort(d.tanggal)}</div>
-        </div>
+        <div><div class="sch-dn">${esc(d.hari)}</div><div class="sch-dt">${fmtShort(d.tanggal)}</div></div>
         <div class="sch-tot">${d.total_jam} jam</div>
-      </div>
-      ${sesi}
+      </div>${sesi}
     </div>`;
   }).join('');
 
